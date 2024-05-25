@@ -1,4 +1,4 @@
-import { Task } from './Taskslist';
+import { Task } from './TasksList';
 
 export type TaskItemProps = Task;
 

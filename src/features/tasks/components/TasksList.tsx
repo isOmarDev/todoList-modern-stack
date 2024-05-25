@@ -7,16 +7,16 @@ export type Task = {
   isComplete: boolean;
 };
 
-export const Taskslist = () => {
+export const TasksList = () => {
   const [tasks] = useState<Task[]>([
     { id: 'ad2123', description: 'Go to gym', isComplete: false },
   ]);
 
   return (
     <ul>
-      {tasks.map((task) => (
-        <TaskItem {...task} />
-      ))}
+      {/* {tasks.map((task) => (
+        <TaskItem {...task} key={task.id} />
+      ))} */}
     </ul>
   );
 };
