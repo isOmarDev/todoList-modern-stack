@@ -1,7 +1,7 @@
 import { Form } from '../../../components/Form';
 import { Input } from '../../../components/Input';
 import { useAddTaskForm } from '../hooks/useAddTaskForm';
-import ArrowIcon from '../../../assets/arrow-uturn.svg?react';
+import PlusIcon from '../../../assets/plus.svg?react';
 import SpinnerIcon from '../../../assets/spinner.svg?react';
 
 export const AddTask = () => {
@@ -37,7 +37,7 @@ export const AddTask = () => {
           {mutation.isPending ? (
             <SpinnerIcon className="h-5 w-5" />
           ) : (
-            <ArrowIcon className="h-5 w-5" />
+            <PlusIcon className="h-5 w-5" />
           )}
         </button>
       </div>

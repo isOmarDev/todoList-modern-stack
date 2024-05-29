@@ -9,6 +9,7 @@ export default {
         gray: '#3D3D3D',
         slate: '#4B4B4B',
         white: '#FFFFFF',
+        active: '#272729',
       },
       fontFamily: {
         segoe: [
