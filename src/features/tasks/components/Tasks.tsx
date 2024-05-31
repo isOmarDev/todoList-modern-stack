@@ -45,6 +45,7 @@ export const Tasks = () => {
                 tasksItems={data?.data}
               />
             </TabPanel>
+
             <TabPanel>
               <TasksList
                 isPending={isPending}
@@ -52,6 +53,7 @@ export const Tasks = () => {
                 tasksItems={activeTasksItems}
               />
             </TabPanel>
+            
             <TabPanel>
               <TasksList
                 isPending={isPending}

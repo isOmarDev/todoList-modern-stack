@@ -1,36 +1,13 @@
-import { useReducer, useRef } from 'react';
-
 import { DeleteTask } from './DeleteTask';
 import { EditTask } from './EditTask';
 import { CheckTask } from './CheckTask';
 import { UndoTask } from './UndoTask';
 import { Input } from '../../../components/Input';
 
+import { useEditTask } from '../hooks/useEditTask';
+
 import { cn } from '../../../utils/cn';
 import { Task } from './TasksList';
-
-type ACTIONTYPE =
-  | { type: 'enable-edit' }
-  | { type: 'change'; payload: string };
-
-const initalState = {
-  description: '',
-  isEditEnabled: false,
-};
-
-function reducer(
-  state: { [k in keyof typeof initalState]: (typeof initalState)[k] },
-  action: ACTIONTYPE,
-) {
-  switch (action.type) {
-    case 'enable-edit':
-      return { ...state, isEditEnabled: !state.isEditEnabled };
-    case 'change':
-      return { ...state, description: action.payload };
-    default:
-      return state;
-  }
-}
 
 export type TaskItemProps = {
   task: Task;
@@ -39,24 +16,23 @@ export type TaskItemProps = {
 export const TaskItem = ({ task }: TaskItemProps) => {
   const { id, description, isCompleted } = task;
 
-  const [state, dispatch] = useReducer(reducer, {
-    ...initalState,
-    description,
+  const {
+    state,
+    isDescriptionChanged,
+    inputRef,
+    handleChange,
+    toggleEdit,
+  } = useEditTask({
+    initialValue: description,
   });
-
-  const toggleEdit = () => {
-    dispatch({ type: 'enable-edit' });
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: 'change', payload: e.target.value });
-  };
 
   return (
     <li
       id={id}
       className={cn(
-        'mb-5 flex items-center rounded-lg bg-charcoal px-3 transition-colors duration-150 ease-in-out first:mt-4 last:mb-0 hover:bg-[#333333]',
+        `group mb-5 flex items-center rounded-lg bg-charcoal px-3 
+        transition-colors duration-150 ease-in-out 
+        first:mt-4 last:mb-0 hover:bg-[#333333]`,
         isCompleted &&
           'bg-[rgba(41,41,41,0.5)] hover:bg-[rgba(51,51,51,0.5)]',
       )}
@@ -70,6 +46,7 @@ export const TaskItem = ({ task }: TaskItemProps) => {
               'bg-transparent hover:bg-transparent',
               isCompleted && 'text-opacity-50',
             )}
+            ref={inputRef}
             type="text"
             name="description"
             value={state.description}
@@ -79,23 +56,27 @@ export const TaskItem = ({ task }: TaskItemProps) => {
         </div>
       </div>
 
-      <div className="flex items-center px-[15px] py-[20px]">
-        {isCompleted ? (
-          <>
-            <UndoTask taskId={id} />
-            <DeleteTask taskId={id} />
-          </>
-        ) : (
-          <>
-            <EditTask
-              taskId={id}
-              description={state.description}
-              isEditEnabled={state.isEditEnabled}
-              toggleEdit={toggleEdit}
-            />
-            <DeleteTask taskId={id} />
-          </>
+      <div
+        className={cn(
+          'flex items-center px-[15px] py-[20px]',
+          isCompleted &&
+            'opacity-50 transition-opacity duration-150 ease-in-out group-hover:opacity-100',
         )}
+      >
+        {isCompleted ? (
+          <UndoTask taskId={id} />
+        ) : (
+          <EditTask
+            taskId={id}
+            inputRef={inputRef}
+            isDescriptionChanged={isDescriptionChanged}
+            description={state.description}
+            isEditEnabled={state.isEditEnabled}
+            toggleEdit={toggleEdit}
+          />
+        )}
+
+        <DeleteTask taskId={id} />
       </div>
     </li>
   );

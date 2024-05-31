@@ -2,13 +2,14 @@ import { Input } from '../../../components/Input';
 import { useUpdateTask } from '../api/update-task';
 
 import { cn } from '../../../utils/cn';
+import React from 'react';
 
 type CheckTaskProps = {
   taskId: string;
   isCompleted: boolean;
 };
 
-export const CheckTask = ({
+export const CheckTask = React.memo(({
   taskId,
   isCompleted,
 }: CheckTaskProps) => {
@@ -25,4 +26,4 @@ export const CheckTask = ({
       }}
     />
   );
-};
+});

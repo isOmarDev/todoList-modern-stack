@@ -1,6 +1,6 @@
 import { Form } from '../../../components/Form';
 import { Input } from '../../../components/Input';
-import { useAddTaskForm } from '../hooks/useAddTaskForm';
+import { useAddTask } from '../hooks/useAddTask';
 import PlusIcon from '../../../assets/plus.svg?react';
 import SpinnerIcon from '../../../assets/spinner.svg?react';
 
@@ -9,10 +9,10 @@ export const AddTask = () => {
     description,
     error,
     inputRef,
-    handleOnChange,
+    createTaskMutation,
+    handleChange,
     handleSubmit,
-    mutation,
-  } = useAddTaskForm();
+  } = useAddTask();
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -23,18 +23,18 @@ export const AddTask = () => {
           type="text"
           name="description"
           value={description}
-          errorMsg={error || mutation.error?.message}
+          errorMsg={error || createTaskMutation.error?.message}
           placeholder="Add a task"
           maxLength={50}
-          onChange={handleOnChange}
+          onChange={handleChange}
         />
 
         <button
           className="absolute right-[8px] top-[8px] h-12 rounded-md bg-charcoal px-4 transition-colors duration-100 ease-in-out hover:bg-black"
           type="submit"
-          disabled={mutation.isPending}
+          disabled={createTaskMutation.isPending}
         >
-          {mutation.isPending ? (
+          {createTaskMutation.isPending ? (
             <SpinnerIcon className="h-5 w-5" />
           ) : (
             <PlusIcon className="h-5 w-5" />
