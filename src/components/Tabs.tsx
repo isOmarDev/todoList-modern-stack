@@ -66,14 +66,16 @@ export const TabsList = ({
 };
 
 export const TabsPanels = ({
+  className,
   children,
 }: {
+  className?: string;
   children: React.ReactNode;
 }) => {
   const { activeTab } = useTabsContext();
 
   return (
-    <div>
+    <div className={cn(className)}>
       {Children.map(children, (child, index) => {
         return React.cloneElement(
           child as React.ReactElement<TabPanelProps>,
@@ -82,7 +84,7 @@ export const TabsPanels = ({
           },
         );
       })}
-    </div>
+    </div>  
   );
 };
 

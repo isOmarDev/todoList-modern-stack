@@ -3,7 +3,7 @@ import { Error } from './Error';
 import { cn } from '../utils/cn';
 
 const checkboxStyles = `
-  relative h-[25px] w-[25px] cursor-pointer appearance-none rounded-full border border-gray bg-charcoal align-bottom
+  relative h-[25px] w-[25px] cursor-pointer disabled:cursor-default appearance-none rounded-full border border-gray bg-charcoal align-bottom
   before:absolute before:left-2/4 before:top-2/4 before:h-1.5 before:w-3 before:-translate-x-2/4 before:-translate-y-2/4 before:-rotate-45 before:border-2 before:border-r-0 before:border-t-0 before:border-charcoal before:opacity-0
   checked:border-green-400 checked:bg-green-400 checked:opacity-100 before:checked:opacity-100
 `;

@@ -37,7 +37,7 @@ export const Tasks = () => {
             <Tab>{COMPLETED_TASKS}</Tab>
           </TabsList>
 
-          <TabsPanels>
+          <TabsPanels className="mt-5">
             <TabPanel>
               <TasksList
                 isPending={isPending}
@@ -53,7 +53,7 @@ export const Tasks = () => {
                 tasksItems={activeTasksItems}
               />
             </TabPanel>
-            
+
             <TabPanel>
               <TasksList
                 isPending={isPending}

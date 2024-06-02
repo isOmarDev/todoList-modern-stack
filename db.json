@@ -9,7 +9,7 @@
     {
       "id": "ec4dd071-579f-477f-89e0-11a1ef35463b",
       "description": "one",
-      "isCompleted": true,
+      "isCompleted": false,
       "createdAt": "2024-05-31T18:20:34.540Z"
     },
     {
@@ -21,7 +21,7 @@
     {
       "id": "f7ffe741-ab37-422e-be9f-c0b29ddf8d49",
       "description": "threee",
-      "isCompleted": false,
+      "isCompleted": true,
       "createdAt": "2024-05-31T18:20:37.132Z"
     }
   ]

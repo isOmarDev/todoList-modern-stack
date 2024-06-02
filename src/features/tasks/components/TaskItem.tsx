@@ -32,7 +32,7 @@ export const TaskItem = ({ task }: TaskItemProps) => {
       className={cn(
         `group mb-5 flex items-center rounded-lg bg-charcoal px-3 
         transition-colors duration-150 ease-in-out 
-        first:mt-4 last:mb-0 hover:bg-[#333333]`,
+        last:mb-0 hover:bg-[#333333]`,
         isCompleted &&
           'bg-[rgba(41,41,41,0.5)] hover:bg-[rgba(51,51,51,0.5)]',
       )}
@@ -58,7 +58,7 @@ export const TaskItem = ({ task }: TaskItemProps) => {
 
       <div
         className={cn(
-          'flex items-center px-[15px] py-[20px]',
+          'flex items-center py-[20px]',
           isCompleted &&
             'opacity-50 transition-opacity duration-150 ease-in-out group-hover:opacity-100',
         )}

@@ -21,14 +21,14 @@ export const TasksList = ({
 }: TasksListProps) => {
   if (isPending) {
     return (
-      <div className="mt-5">
+      <div>
         <SpinnerIcon className="mx-auto" />
       </div>
     );
   }
 
   if (!tasksItems?.length) {
-    return <div className="mt-5">{emptyMsg}</div>;
+    return <div>{emptyMsg}</div>;
   }
 
   return (
