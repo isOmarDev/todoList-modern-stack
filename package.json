@@ -10,7 +10,8 @@
     "check-types": "tsc --project tsconfig.json --pretty --noEmit",
     "preview": "vite preview",
     "serve-json": "json-server --watch db.json",
-    "test": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "prepare": "husky"
   },
   "dependencies": {
