@@ -2,5 +2,6 @@
   "singleQuote": true,
   "jsxSingleQuote": false,
   "printWidth": 70,
-  "plugins": ["prettier-plugin-tailwindcss"]
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindFunctions": ["cva"]
 }

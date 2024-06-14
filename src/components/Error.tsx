@@ -8,7 +8,7 @@ export const Error = ({ errorMsg }: ErrorProps) => {
   return (
     <div
       role="alert"
-      className="text-red-500 mt-1 text-sm font-semibold transition-colors duration-150 ease-in-out"
+      className="mt-1 text-sm font-semibold text-red-500 transition-colors duration-150 ease-in-out"
     >
       {errorMsg}
     </div>

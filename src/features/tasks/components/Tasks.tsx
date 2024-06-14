@@ -5,7 +5,7 @@ import {
   TabsPanels,
   Tab,
   TabPanel,
-} from '../../../components/Tabs';
+} from '@/components/Tabs';
 import { TasksList } from './TasksList';
 import { useFetchTasks } from '../api/get-tasks';
 import {

@@ -1,5 +1,5 @@
 import { TaskItem } from './TaskItem';
-import SpinnerIcon from '../../../assets/spinner.svg?react';
+import { Spinner } from '@/components/Spinner';
 
 export type Task = {
   id: string;
@@ -22,7 +22,7 @@ export const TasksList = ({
   if (isPending) {
     return (
       <div>
-        <SpinnerIcon className="mx-auto" />
+        <Spinner className="mx-auto" />
       </div>
     );
   }

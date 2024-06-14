@@ -1,4 +1,5 @@
-<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+  fill="currentColor">
   <style>.spinner_6kVp{transform-origin:center;animation:spinner_irSm .75s infinite
     linear}@keyframes spinner_irSm{100%{transform:rotate(360deg)}}</style>
   <path

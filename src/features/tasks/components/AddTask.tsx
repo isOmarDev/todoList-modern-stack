@@ -1,8 +1,10 @@
-import { Form } from '../../../components/Form';
-import { Input } from '../../../components/Input';
+import { Form } from '@/components/Form';
+import { Input } from '@/components/Input';
+import { Button } from '@/components/Button';
+
 import { useAddTask } from '../hooks/useAddTask';
+
 import PlusIcon from '../../../assets/plus.svg?react';
-import SpinnerIcon from '../../../assets/spinner.svg?react';
 
 export const AddTask = () => {
   const {
@@ -29,17 +31,14 @@ export const AddTask = () => {
           onChange={handleChange}
         />
 
-        <button
-          className="absolute right-[8px] top-[8px] h-12 rounded-md bg-charcoal px-4 transition-colors duration-100 ease-in-out hover:bg-black"
+        <Button
+          className="absolute right-[8px] top-[8px] size-12 rounded-md bg-charcoal hover:bg-black"
+          size="icon"
+          isLoading={createTaskMutation.isPending}
+          icon={<PlusIcon className="h-5 w-5" />}
           type="submit"
           disabled={createTaskMutation.isPending}
-        >
-          {createTaskMutation.isPending ? (
-            <SpinnerIcon className="h-5 w-5" />
-          ) : (
-            <PlusIcon className="h-5 w-5" />
-          )}
-        </button>
+        />
       </div>
     </Form>
   );

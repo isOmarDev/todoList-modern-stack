@@ -1,6 +1,7 @@
 import { useUpdateTask } from '../api/update-task';
 import EditIcon from '../../../assets/edit.svg?react';
 import CheckIcon from '../../../assets/check.svg?react';
+import { Button } from '@/components/Button';
 
 type EditTaskProps = {
   inputRef: React.RefObject<HTMLInputElement>;
@@ -47,7 +48,7 @@ export const EditTask = ({
     );
   };
 
-  const handleClick = () => {
+  const handleUpdateTask = () => {
     if (isEditEnabled) {
       updateTask();
     } else {
@@ -56,8 +57,12 @@ export const EditTask = ({
   };
 
   return (
-    <button className="rounded-full p-2" onClick={handleClick}>
-      {isEditEnabled ? <CheckIcon /> : <EditIcon />}
-    </button>
+    <Button
+      className="rounded-md hover:bg-[rgba(51,51,51)]"
+      size="icon"
+      icon={isEditEnabled ? <CheckIcon strokeWidth={1.8} /> : <EditIcon />}
+      isLoading={updateTaskDescriptionMutation.isPending}
+      onClick={handleUpdateTask}
+    />
   );
 };

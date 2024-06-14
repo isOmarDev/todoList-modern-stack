@@ -13,11 +13,16 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "types": ["vitest/globals"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
 
     /* Linting */
     "strict": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "vite-env.d.ts"],
+  "include": ["src", "vite-env.d.ts", "src/components/__tests__/tabs.test.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
