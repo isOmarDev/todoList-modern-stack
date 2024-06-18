@@ -1,9 +1,7 @@
-import {
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Provider } from 'react-redux';
+import { queryClient } from '@/lib/react-query';
 import { store } from '../store/store';
 
 type AppProviderProps = {
@@ -11,8 +9,6 @@ type AppProviderProps = {
 };
 
 export const AppProvider = ({ children }: AppProviderProps) => {
-  // Create a client
-  const queryClient = new QueryClient();
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>

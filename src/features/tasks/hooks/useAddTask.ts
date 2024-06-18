@@ -16,11 +16,11 @@ export const useAddTask = () => {
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setDescription(e.target.value);
-      if (e.target.value.trim() !== '') {
+      if (e.target.value.trim() !== '' && error) {
         setError('');
       }
     },
-    [],
+    [error],
   );
 
   // Submit new task

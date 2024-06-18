@@ -8,6 +8,8 @@ export const handlers = [
     });
   }),
   http.post(`${import.meta.env.VITE_API_URL}/tasks`, () => {
+    console.log("ana el asad");
+    
     return HttpResponse.json({
       firstName: 'John',
       lastName: 'Maverick',

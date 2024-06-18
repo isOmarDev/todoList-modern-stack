@@ -2,7 +2,7 @@ import { useCallback, useReducer, useRef } from 'react';
 
 type ACTIONTYPE =
   | { type: 'enable-edit' }
-  | { type: 'change'; payload: string };
+  | { type: 'edit-task'; payload: string };
 
 const initalState = {
   description: '',
@@ -16,7 +16,7 @@ function reducer(
   switch (action.type) {
     case 'enable-edit':
       return { ...state, isEditEnabled: !state.isEditEnabled };
-    case 'change':
+    case 'edit-task':
       return { ...state, description: action.payload };
     default:
       return state;
@@ -42,7 +42,7 @@ export const useEditTask = ({ initialValue }: UseEditTask) => {
   // Change input handler
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      dispatch({ type: 'change', payload: e.target.value });
+      dispatch({ type: 'edit-task', payload: e.target.value });
     },
     [],
   );
