@@ -30,7 +30,9 @@ export const useUpdateTask = (options?: UseAddTask) => {
 
   const mutationConfig = {
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['tasks'] });
+      queryClient.refetchQueries({
+        queryKey: ['tasks'],
+      });
       onSuccess?.();
     },
   };
@@ -49,7 +51,7 @@ export const useUpdateTask = (options?: UseAddTask) => {
     ...mutationConfig,
     mutationFn: updateTaskDescription,
   });
-  
+
   return {
     completeTaskMutation,
     undoTaskMutation,

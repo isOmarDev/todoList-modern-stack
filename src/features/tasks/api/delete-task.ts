@@ -6,8 +6,6 @@ type UseAddTask = {
 };
 
 const deleteTask = ({ taskId }: { taskId: string }) => {
-  console.log(taskId);
-
   return http.delete(`/tasks/${taskId}`);
 };
 

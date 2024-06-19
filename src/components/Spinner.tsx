@@ -28,6 +28,8 @@ export const Spinner = ({
   return (
     <SpinnerIcon
       className={cn(sizes[size], variants[variant], className)}
+      role="img"
+      aria-label="spinner icon"
     />
   );
 };

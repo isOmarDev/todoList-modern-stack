@@ -1,4 +1,4 @@
-import { renderHook, act } from '@/tests/test-utils';
+import { renderHook, act, waitFor } from '@/tests/test-utils';
 import { useAddTask } from '../useAddTask';
 import { server } from '@/tests/mocks/node';
 import { createWrapper } from '@/tests/utils/createWrapper';
@@ -53,8 +53,6 @@ test('should set error if description is empty on handleSubmit', () => {
 });
 
 test('should clear input on successful task creation', async () => {
-  server.use();
-
   const { result } = renderHook(() => useAddTask(), {
     wrapper: createWrapper(),
   });
@@ -65,13 +63,11 @@ test('should clear input on successful task creation', async () => {
     } as React.ChangeEvent<HTMLInputElement>);
   });
 
-  await vi.waitFor(() =>
-    act(() => {
-      result.current.handleSubmit({
-        preventDefault: vi.fn(),
-      } as unknown as React.SyntheticEvent);
-    }),
-  );
+  act(() => {
+    result.current.handleSubmit({
+      preventDefault: vi.fn(),
+    } as unknown as React.SyntheticEvent);
+  });
 
-  expect(result.current.description).toBe('');
+  await waitFor(() => expect(result.current.description).toBe(''));
 });

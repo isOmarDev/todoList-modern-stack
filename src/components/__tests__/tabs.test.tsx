@@ -1,5 +1,4 @@
-import { render, screen } from '@/tests/test-utils';
-import userEvent from '@testing-library/user-event';
+import { render, screen, userEvent } from '@/tests/test-utils';
 
 import { Tabs, TabsList, Tab, TabsPanels, TabPanel } from '../Tabs';
 

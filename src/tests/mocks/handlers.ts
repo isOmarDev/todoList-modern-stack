@@ -1,4 +1,4 @@
-import { http, HttpResponse } from 'msw';
+import { delay, http, HttpResponse } from 'msw';
 
 export const handlers = [
   http.get(`${import.meta.env.VITE_API_URL}/tasks`, () => {
@@ -7,9 +7,11 @@ export const handlers = [
       lastName: 'Maverick',
     });
   }),
-  http.post(`${import.meta.env.VITE_API_URL}/tasks`, () => {
-    console.log("ana el asad");
-    
+  http.post(`${import.meta.env.VITE_API_URL}/tasks`, async () => {
+    console.log('ana el asad');
+
+    await delay(50);
+
     return HttpResponse.json({
       firstName: 'John',
       lastName: 'Maverick',

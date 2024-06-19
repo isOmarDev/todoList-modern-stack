@@ -35,9 +35,16 @@ export const AddTask = () => {
           className="absolute right-[8px] top-[8px] size-12 rounded-md bg-charcoal hover:bg-black"
           size="icon"
           isLoading={createTaskMutation.isPending}
-          icon={<PlusIcon className="h-5 w-5" />}
+          icon={
+            <PlusIcon
+              className="h-5 w-5"
+              aria-label="plus icon"
+              role="img"
+            />
+          }
           type="submit"
           disabled={createTaskMutation.isPending}
+          aria-label="add task"
         />
       </div>
     </Form>

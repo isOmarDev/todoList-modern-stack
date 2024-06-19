@@ -32,6 +32,7 @@ export const useAddTask = () => {
 
       if (isDescriptionEmpty) {
         setError('Field is empty');
+        inputRef.current?.focus();
         return;
       }
 
@@ -40,6 +41,7 @@ export const useAddTask = () => {
         {
           onSuccess: () => {
             clearInput();
+            inputRef.current?.focus();
           },
         },
       );
@@ -49,7 +51,6 @@ export const useAddTask = () => {
 
   const clearInput = () => {
     setDescription('');
-    inputRef.current?.focus();
   };
 
   return {
