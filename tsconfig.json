@@ -23,6 +23,10 @@
     "strict": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "vite-env.d.ts", "src/components/__tests__/tabs.test.tsx"],
+  "include": [
+    "src",
+    "vite-env.d.ts",
+    "src/components/__tests__/tabs.test.tsx"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -7,7 +7,7 @@ import {
 
 import { AddTask } from '../AddTask';
 
-test('should add new task successfully and focus on add task input', async () => {
+test('should clear and focus back on add task input after adding task successfully', async () => {
   const user = userEvent.setup();
 
   render(<AddTask />);
@@ -35,7 +35,7 @@ test('should add new task successfully and focus on add task input', async () =>
   expect(addTaskInput).toHaveFocus();
 });
 
-test('should fail if added empty task', async () => {
+test('should show field is empty error if added an empty task', async () => {
   const user = userEvent.setup();
 
   render(<AddTask />);
@@ -47,6 +47,8 @@ test('should fail if added empty task', async () => {
 
   await user.click(addTaskButton);
 
-  expect(screen.getByRole('alert')).toBeInTheDocument();
+  expect(screen.getByRole('alert')).toHaveTextContent(
+    /field is empty/i,
+  );
   expect(addTaskInput).toHaveFocus();
 });
