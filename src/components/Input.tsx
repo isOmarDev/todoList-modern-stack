@@ -23,8 +23,13 @@ export type InputProps =
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, label, type, errorMsg, ...props }, ref) => {
     return (
-      <div>
-        <label>
+      <div className="relative">
+        <label
+          className={cn(
+            'block font-medium',
+            errorMsg && 'text-red-500',
+          )}
+        >
           {label}
 
           <input

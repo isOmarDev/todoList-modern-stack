@@ -2,10 +2,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { v4 as uuidv4 } from 'uuid';
 import { http } from '../../../lib/axios';
 
-type UseAddTask = {
-  onSuccess?: () => void;
-};
-
 const createTask = ({ description }: { description: string }) => {
   return http.post('/tasks', {
     id: uuidv4(),
@@ -15,7 +11,11 @@ const createTask = ({ description }: { description: string }) => {
   });
 };
 
-export const useCreateTask = (options?: UseAddTask) => {
+type Options = {
+  onSuccess?: () => void;
+};
+
+export const useCreateTask = (options?: Options) => {
   const queryClient = useQueryClient();
 
   const { onSuccess } = options || {};

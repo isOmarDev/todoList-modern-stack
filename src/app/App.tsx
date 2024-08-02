@@ -1,17 +1,29 @@
+import { useMemo } from 'react';
 import { AppProvider } from './AppProvider';
-import { Header } from '../components/Header';
-import { Main } from '../components/Main';
-import { Tasks } from '../features/tasks/components/Tasks';
+import { RouterProvider } from 'react-router-dom';
+import { createRouter } from '../routes';
+import { Spinner } from '@/components/Spinner';
+
+const AppRouter = () => {
+  // const queryClient = useQueryClient();
+  const router = useMemo(() => createRouter(), []);
+
+  return (
+    <RouterProvider
+      router={router}
+      fallbackElement={
+        <div className="flex h-screen w-screen items-center justify-center">
+          <Spinner />
+        </div>
+      }
+    />
+  );
+};
 
 export const App = () => {
   return (
     <AppProvider>
-      <div className="mx-auto max-w-[900px] px-6 py-12 sm:px-12">
-        <Header />
-        <Main>
-          <Tasks />
-        </Main>
-      </div>
+      <AppRouter />
     </AppProvider>
   );
 };

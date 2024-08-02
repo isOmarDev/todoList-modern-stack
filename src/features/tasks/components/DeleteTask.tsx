@@ -16,7 +16,8 @@ export const DeleteTask = ({ taskId }: DeleteTaskProps) => {
 
   return (
     <Button
-      className="rounded-md hover:bg-[rgba(51,51,51)]"
+      className="rounded-md"
+      variant="text"
       size="icon"
       onClick={handleDeleteTask}
     >

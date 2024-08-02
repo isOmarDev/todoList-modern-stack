@@ -1,6 +1,5 @@
 import { renderHook, act, waitFor } from '@/tests/test-utils';
 import { useAddTask } from '../useAddTask';
-import { server } from '@/tests/mocks/node';
 import { createWrapper } from '@/tests/utils/createWrapper';
 
 test('should initialize with default values', () => {

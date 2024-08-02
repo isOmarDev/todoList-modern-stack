@@ -17,16 +17,14 @@ import {
 export const Tasks = () => {
   const { isPending, data } = useFetchTasks();
 
-  const activeTasksItems = data?.data.filter(
-    (task) => !task.isCompleted,
-  );
+  const activeTasks = data?.data.filter((task) => !task.isCompleted);
 
-  const CompletedTasksItems = data?.data.filter(
+  const CompletedTasks = data?.data.filter(
     (task) => task.isCompleted,
   );
 
   return (
-    <div>
+    <div className="mt-[30px]">
       <AddTask />
 
       <div className="mt-7">
@@ -50,7 +48,7 @@ export const Tasks = () => {
               <TasksList
                 isPending={isPending}
                 emptyMsg="No active tasks"
-                tasksItems={activeTasksItems}
+                tasksItems={activeTasks}
               />
             </TabPanel>
 
@@ -58,7 +56,7 @@ export const Tasks = () => {
               <TasksList
                 isPending={isPending}
                 emptyMsg="No completed tasks"
-                tasksItems={CompletedTasksItems}
+                tasksItems={CompletedTasks}
               />
             </TabPanel>
           </TabsPanels>

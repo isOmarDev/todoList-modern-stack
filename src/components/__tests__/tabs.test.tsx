@@ -13,8 +13,8 @@ const TestTabs = () => {
 
       <TabsPanels>
         <TabPanel>panel one</TabPanel>
-        <TabPanel>panel one</TabPanel>
         <TabPanel>panel two</TabPanel>
+        <TabPanel>panel three</TabPanel>
       </TabsPanels>
     </Tabs>
   );

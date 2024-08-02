@@ -19,11 +19,11 @@ const updateTaskDescription = ({
   return http.patch(`/tasks/${taskId}`, { description });
 };
 
-type Options = {
+type UseAddTask = {
   onSuccess?: () => void;
 };
 
-export const useUpdateTask = (options?: Options) => {
+export const useUpdateTask = (options?: UseAddTask) => {
   const queryClient = useQueryClient();
 
   const { onSuccess } = options || {};

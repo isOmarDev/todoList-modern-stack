@@ -14,7 +14,8 @@ export const UndoTask = ({ taskId }: UndoTaskProps) => {
 
   return (
     <Button
-      className="rounded-md hover:bg-[rgba(51,51,51)]"
+      className="rounded-md"
+      variant="text"
       size="icon"
       isLoading={undoTaskMutation.isPending}
       icon={<UndoIcon className="h-5 w-5 stroke-indigo-300" />}

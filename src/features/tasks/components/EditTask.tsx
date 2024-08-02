@@ -58,9 +58,12 @@ export const EditTask = ({
 
   return (
     <Button
-      className="rounded-md hover:bg-[rgba(51,51,51)]"
+      className="rounded-md"
+      variant="text"
       size="icon"
-      icon={isEditEnabled ? <CheckIcon strokeWidth={1.8} /> : <EditIcon />}
+      icon={
+        isEditEnabled ? <CheckIcon strokeWidth={1.8} /> : <EditIcon />
+      }
       isLoading={updateTaskDescriptionMutation.isPending}
       onClick={handleUpdateTask}
     />

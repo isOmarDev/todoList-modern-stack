@@ -111,7 +111,7 @@ export const Tab = ({
   return (
     <Button
       id={id}
-      className={cn(isActive && 'bg-active')}
+      variant={isActive ? 'default' : 'text'}
       type="button"
       role="tab"
       aria-selected={isActive}
