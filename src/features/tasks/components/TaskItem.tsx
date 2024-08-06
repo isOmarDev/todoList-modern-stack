@@ -33,6 +33,7 @@ export const TaskItem = ({ task }: TaskItemProps) => {
         `group mb-5 flex items-center rounded-lg bg-charcoal px-3 
         transition-colors duration-150 ease-in-out 
         last:mb-0 hover:bg-[rgba(51,51,51,0.7)]`,
+        state.isEditEnabled ? 'outline outline-2 outline-sky' : "outline-none",
         isCompleted &&
           'bg-[rgba(41,41,41,0.5)] hover:bg-[rgba(51,51,51,0.5)]',
       )}

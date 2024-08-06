@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { AddTask } from './AddTask';
 import {
   Tabs,
@@ -17,14 +18,18 @@ import {
 export const Tasks = () => {
   const { isPending, data } = useFetchTasks();
 
-  const activeTasks = data?.data.filter((task) => !task.isCompleted);
+  const activeTasks = useMemo(
+    () => data?.data.filter((task) => !task.isCompleted),
+    [data?.data],
+  );
 
-  const CompletedTasks = data?.data.filter(
-    (task) => task.isCompleted,
+  const CompletedTasks = useMemo(
+    () => data?.data.filter((task) => task.isCompleted),
+    [data?.data],
   );
 
   return (
-    <div className="mt-[30px]">
+    <div className="mt-[50px]">
       <AddTask />
 
       <div className="mt-7">

@@ -10,6 +10,7 @@ export default {
         slate: '#4B4B4B',
         white: '#FFFFFF',
         active: '#272729',
+        sky: '#7ec7c3',
       },
       fontFamily: {
         segoe: [
@@ -19,6 +20,10 @@ export default {
           'Verdana',
           'sans-serif',
         ],
+      },
+      transitionProperty: {
+        colors:
+          'color, background-color, border-color, outline-color, text-decoration-color, fill, stroke',
       },
     },
   },

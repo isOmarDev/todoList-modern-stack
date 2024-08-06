@@ -1,5 +1,5 @@
-import TrashIcon from '../../../assets/trash.svg?react';
 import { Button } from '@/components/Button';
+import TrashIcon from '@/assets/trash.svg?react';
 
 import { useDeleteTask } from '../api/delete-task';
 

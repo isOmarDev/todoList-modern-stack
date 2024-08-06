@@ -1,31 +1,38 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { AxiosPromise } from 'axios';
+import { useQuery } from '@tanstack/react-query';
 import { http } from '../../../lib/axios';
+import { User } from '../types/api';
 
 type LoginProps = {
-  data: {
-    email: string;
-    password: string;
-  };
+  nickname: string;
+  password: string;
 };
 
-const login = ({ data }: LoginProps) => {
-  return http.post('/login', data);
-};
+const login = ({
+  nickname,
+  password,
+}: LoginProps): AxiosPromise<User[]> => {
+  const encodedNickName = encodeURIComponent(nickname);
+  const encodedpassword = encodeURIComponent(password);
 
-type Options = {
-  onSuccess?: () => void;
-};
-
-export const useLogin = (options?: Options) => {
-  const queryClient = useQueryClient();
-
-  const { onSuccess } = options || {};
-
-  return useMutation({
-    mutationFn: login,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['user'] });
-      onSuccess?.();
+  return http.get(`/users`, {
+    params: {
+      nickname: encodedNickName,
+      password: encodedpassword,
     },
+  });
+};
+
+type UseLoginProps = {
+  nickname: string;
+  password: string;
+};
+
+export const useLogin = ({ nickname, password }: UseLoginProps) => {
+  return useQuery({
+    queryKey: ['users', { nickname, password }],
+    queryFn: () => login({ nickname, password }),
+    enabled: false,
+    gcTime: 0,
   });
 };

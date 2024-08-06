@@ -1,60 +1,31 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
+import { AxiosPromise } from 'axios';
 import { http } from '../../../lib/axios';
+import { User } from '../types/api';
 
-const completeTask = ({ taskId }: { taskId: string }) => {
-  return http.patch(`/tasks/${taskId}`, { isCompleted: true });
+type RegisterProps = {
+  data: {
+    nickname: string;
+    email: string;
+    password: string;
+  };
 };
 
-const undoTask = ({ taskId }: { taskId: string }) => {
-  return http.patch(`/tasks/${taskId}`, { isCompleted: false });
+const register = ({ data }: RegisterProps): AxiosPromise<User> => {
+  return http.post(`/users`, { ...data, createdAt: new Date() });
 };
 
-const updateTaskDescription = ({
-  taskId,
-  description,
-}: {
-  taskId: string;
-  description: string;
-}) => {
-  return http.patch(`/tasks/${taskId}`, { description });
-};
-
-type UseAddTask = {
+type Options = {
   onSuccess?: () => void;
 };
 
-export const useUpdateTask = (options?: UseAddTask) => {
-  const queryClient = useQueryClient();
-
+export const useRegister = (options?: Options) => {
   const { onSuccess } = options || {};
 
-  const mutationConfig = {
+  return useMutation({
+    mutationFn: register,
     onSuccess: () => {
-      queryClient.refetchQueries({
-        queryKey: ['tasks'],
-      });
       onSuccess?.();
     },
-  };
-
-  const completeTaskMutation = useMutation({
-    ...mutationConfig,
-    mutationFn: completeTask,
   });
-
-  const undoTaskMutation = useMutation({
-    ...mutationConfig,
-    mutationFn: undoTask,
-  });
-
-  const updateTaskDescriptionMutation = useMutation({
-    ...mutationConfig,
-    mutationFn: updateTaskDescription,
-  });
-
-  return {
-    completeTaskMutation,
-    undoTaskMutation,
-    updateTaskDescriptionMutation,
-  };
 };
