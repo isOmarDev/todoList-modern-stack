@@ -5,7 +5,6 @@ import { createRouter } from '../routes';
 import { Spinner } from '@/components/Spinner';
 
 const AppRouter = () => {
-  // const queryClient = useQueryClient();
   const router = useMemo(() => createRouter(), []);
 
   return (

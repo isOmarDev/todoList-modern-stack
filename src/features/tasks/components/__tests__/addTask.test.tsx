@@ -6,11 +6,16 @@ import {
 } from '@/tests/test-utils';
 
 import { AddTask } from '../AddTask';
+import { AuthProvider } from '@/features/auth/hooks/UserContext';
 
 test('should clear and focus back on add task input after adding task successfully', async () => {
   const user = userEvent.setup();
 
-  render(<AddTask />);
+  render(
+    <AuthProvider>
+      <AddTask />
+    </AuthProvider>,
+  );
 
   const addTaskInput = screen.getByRole('textbox');
   const addTaskButton = screen.getByRole('button', {
@@ -38,7 +43,11 @@ test('should clear and focus back on add task input after adding task successful
 test('should show field is empty error if added an empty task', async () => {
   const user = userEvent.setup();
 
-  render(<AddTask />);
+  render(
+    <AuthProvider>
+      <AddTask />
+    </AuthProvider>,
+  );
 
   const addTaskInput = screen.getByRole('textbox');
   const addTaskButton = screen.getByRole('button', {

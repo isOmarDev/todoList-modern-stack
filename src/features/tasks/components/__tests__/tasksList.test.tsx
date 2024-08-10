@@ -5,9 +5,8 @@ import {
   waitForElementToBeRemoved,
 } from '@/tests/test-utils';
 import { server } from '@/tests/mocks/node';
-
 import { Tasks } from '../Tasks';
-
+import { AuthProvider } from '@/features/auth/hooks/UserContext';
 import {
   generateActiveTask,
   generateCompletedTask,
@@ -21,7 +20,11 @@ test('should render no tasks message if tasks fetched is empty', async () => {
     }),
   );
 
-  render(<Tasks />);
+  render(
+    <AuthProvider>
+      <Tasks />
+    </AuthProvider>,
+  );
 
   await waitForElementToBeRemoved(() =>
     screen.queryByRole('img', {
@@ -49,7 +52,11 @@ test('should render all tasks and active task if tasks fetched are not completed
     }),
   );
 
-  render(<Tasks />);
+  render(
+    <AuthProvider>
+      <Tasks />
+    </AuthProvider>,
+  );
 
   await waitForElementToBeRemoved(() =>
     screen.queryByRole('img', {
@@ -76,7 +83,11 @@ test('should render all tasks and complete task if tasks fetched are completed',
     }),
   );
 
-  render(<Tasks />);
+  render(
+    <AuthProvider>
+      <Tasks />
+    </AuthProvider>,
+  );
 
   await waitForElementToBeRemoved(() =>
     screen.queryByRole('img', {
@@ -106,7 +117,11 @@ test('should render all tasks, active and completed task if fetched tasks have a
     }),
   );
 
-  render(<Tasks />);
+  render(
+    <AuthProvider>
+      <Tasks />
+    </AuthProvider>,
+  );
 
   await waitForElementToBeRemoved(() =>
     screen.queryByRole('img', {
