@@ -1,4 +1,4 @@
-import { useUser } from '@/features/auth/hooks/useUser';
+import { useUserContext } from '@/features/auth/hooks/UserContext';
 import { Navigate } from 'react-router-dom';
 
 type ProtectedRouteProps = {
@@ -8,7 +8,7 @@ type ProtectedRouteProps = {
 export const RestrictedRoute = ({
   children,
 }: ProtectedRouteProps) => {
-  const { user } = useUser();
+  const { user } = useUserContext();
 
   if (user) {
     return <Navigate to="/" replace />;

@@ -34,7 +34,7 @@ export const LoginForm = ({ onSuccess }: LoginFormProps) => {
       <Input
         label="Password"
         type="password"
-        name="nickname"
+        name="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />

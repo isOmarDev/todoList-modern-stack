@@ -1,7 +1,11 @@
 import { useCallback, useRef, useState } from 'react';
 import { useCreateTask } from '../api/create-task';
 
-export const useAddTask = () => {
+type UseAddTaskProps = {
+  userId: string | undefined;
+};
+
+export const useAddTask = ({ userId }: UseAddTaskProps) => {
   // States
   const [description, setDescription] = useState<string>('');
   const [error, setError] = useState<string>('');
@@ -37,7 +41,7 @@ export const useAddTask = () => {
       }
 
       createTaskMutation.mutate(
-        { description },
+        { userId, description },
         {
           onSuccess: () => {
             clearInput();
@@ -46,7 +50,7 @@ export const useAddTask = () => {
         },
       );
     },
-    [description, createTaskMutation],
+    [description, createTaskMutation, userId],
   );
 
   const clearInput = () => {

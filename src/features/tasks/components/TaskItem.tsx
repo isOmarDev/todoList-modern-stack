@@ -30,10 +30,10 @@ export const TaskItem = ({ task }: TaskItemProps) => {
     <li
       id={id}
       className={cn(
-        `group mb-5 flex items-center rounded-lg bg-charcoal px-3 
-        transition-colors duration-150 ease-in-out 
-        last:mb-0 hover:bg-[rgba(51,51,51,0.7)]`,
-        state.isEditEnabled ? 'outline outline-2 outline-sky' : "outline-none",
+        'group mb-5 flex items-center rounded-lg bg-charcoal px-3 outline outline-offset-2 outline-sky',
+        'last:mb-0 hover:bg-[rgba(51,51,51,0.7)]',
+        'transition-colors duration-150 ease-in-out',
+        state.isEditEnabled ? ' outline-2' : 'outline-0',
         isCompleted &&
           'bg-[rgba(41,41,41,0.5)] hover:bg-[rgba(51,51,51,0.5)]',
       )}
@@ -44,7 +44,7 @@ export const TaskItem = ({ task }: TaskItemProps) => {
         <div className="grow">
           <Input
             className={cn(
-              'bg-transparent hover:bg-transparent',
+              'bg-transparent focus-within:ring-0 hover:bg-transparent',
               isCompleted && 'text-opacity-50',
             )}
             ref={inputRef}

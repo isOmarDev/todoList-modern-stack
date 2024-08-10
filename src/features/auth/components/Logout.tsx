@@ -1,17 +1,17 @@
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '../hooks/useUser';
+import { useUserContext } from '../hooks/UserContext';
 
 type LogoutButton = {
   children: ({ handleLogout }: { handleLogout: () => void }) => void;
 };
 
 export const Logout = ({ children }: LogoutButton) => {
-  const { user } = useUser();
+  const { user, handleRemoveUser } = useUserContext();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     if (user) {
-      localStorage.removeItem('user');
+      handleRemoveUser();
       navigate('/login', { replace: true });
     }
   };

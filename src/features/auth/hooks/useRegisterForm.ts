@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useReducer, useState } from 'react';
 import { useRegister } from '../api/register';
+import { useUserContext } from './UserContext';
 
 export const TYPES = {
   SET_NICKNAME: 'SET_NICKNAME',
@@ -58,6 +59,8 @@ export const useRegisterForm = ({
     isSuccess,
   } = useRegister();
 
+  const { handleSetUser } = useUserContext();
+
   // Handlers
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>, type: ActionTypes) => {
@@ -94,15 +97,11 @@ export const useRegisterForm = ({
       if (!user) {
         setError('Something went wrong.');
       } else {
-        const userJSON = JSON.stringify({
-          id: user.id,
-          nickname: user.nickname,
-        });
-        localStorage.setItem('user', userJSON);
+        handleSetUser({ id: user.id, nickname: user.nickname });
         onSuccess?.();
       }
     }
-  }, [isSuccess, registerData, onSuccess]);
+  }, [isSuccess, registerData, onSuccess, handleSetUser]);
 
   return {
     state,

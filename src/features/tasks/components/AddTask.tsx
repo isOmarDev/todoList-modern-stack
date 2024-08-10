@@ -1,12 +1,13 @@
 import { Form } from '@/components/Form';
 import { Input } from '@/components/Input';
 import { Button } from '@/components/Button';
-
+import { useUserContext } from '@/features/auth/hooks/UserContext';
 import { useAddTask } from '../hooks/useAddTask';
-
 import PlusIcon from '../../../assets/plus.svg?react';
 
 export const AddTask = () => {
+  const { user } = useUserContext();
+
   const {
     description,
     error,
@@ -14,13 +15,13 @@ export const AddTask = () => {
     createTaskMutation,
     handleChange,
     handleSubmit,
-  } = useAddTask();
+  } = useAddTask({ userId: user?.id });
 
   return (
     <Form onSubmit={handleSubmit}>
       <div className="relative">
         <Input
-          className="pr-16"
+          className="pr-16 focus-within:ring-0"
           ref={inputRef}
           type="text"
           name="description"

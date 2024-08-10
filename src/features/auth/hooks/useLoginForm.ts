@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useLogin } from '../api/login';
+import { useUserContext } from './UserContext';
 
 type UseLoginFormProps = {
   onSuccess?: () => void;
@@ -10,6 +11,8 @@ export const useLoginForm = ({ onSuccess }: UseLoginFormProps) => {
   const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
+  const { handleSetUser } = useUserContext();
 
   // Mutation
   const {
@@ -42,15 +45,11 @@ export const useLoginForm = ({ onSuccess }: UseLoginFormProps) => {
       if (!user) {
         setError('Wrong nickname or password');
       } else {
-        const userJSON = JSON.stringify({
-          id: user.id,
-          nickname: user.nickname,
-        });
-        localStorage.setItem('user', userJSON);
+        handleSetUser({ id: user.id, nickname: user.nickname });
         onSuccess?.();
       }
     }
-  }, [isSuccess, userData, onSuccess]);
+  }, [isSuccess, userData, onSuccess, handleSetUser]);
 
   return {
     nickname,

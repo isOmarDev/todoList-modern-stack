@@ -1,11 +1,19 @@
-import React, { createContext, useContext, useMemo } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useMemo,
+  useRef,
+} from 'react';
 import { useDisclosure } from '@/hooks/useDisclosure';
+import { useOnClickOutside } from '@/hooks/useClickOutside';
 
 export type MenuContextType = {
   isOpen: boolean;
   open(): void;
-  toggle(): void;
   close(): void;
+  toggle(): void;
+  buttonRef: React.RefObject<HTMLButtonElement>;
+  menuListRef: React.RefObject<HTMLDivElement>;
 };
 
 // Create Menu context
@@ -32,16 +40,29 @@ type MenuProviderProps = {
 };
 
 export const MenuProvider = ({ children }: MenuProviderProps) => {
-  const { isOpen, toggle, open, close } = useDisclosure();
+  // Hooks
+  const { isOpen, open, close, toggle } = useDisclosure();
 
+  // Refs
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const menuListRef = useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(
+    [buttonRef, menuListRef] as React.RefObject<HTMLElement>[],
+    close,
+  );
+
+  // Context
   const value = useMemo(
     () => ({
       isOpen,
       open,
-      toggle,
       close,
+      toggle,
+      buttonRef,
+      menuListRef,
     }),
-    [close, isOpen, toggle, open],
+    [isOpen, open, close, toggle],
   );
 
   return (

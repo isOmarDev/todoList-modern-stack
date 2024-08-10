@@ -2,8 +2,10 @@ import { renderHook, act, waitFor } from '@/tests/test-utils';
 import { useAddTask } from '../useAddTask';
 import { createWrapper } from '@/tests/utils/createWrapper';
 
+const addTaskArgs = { userId: '123' };
+
 test('should initialize with default values', () => {
-  const { result } = renderHook(() => useAddTask(), {
+  const { result } = renderHook(() => useAddTask(addTaskArgs), {
     wrapper: createWrapper(),
   });
 
@@ -13,7 +15,7 @@ test('should initialize with default values', () => {
 });
 
 test('should update description on handleChange', () => {
-  const { result } = renderHook(() => useAddTask(), {
+  const { result } = renderHook(() => useAddTask(addTaskArgs), {
     wrapper: createWrapper(),
   });
   expect(result.current.description).toBe('');
@@ -30,7 +32,7 @@ test('should update description on handleChange', () => {
 });
 
 test('should set error if description is empty on handleSubmit', () => {
-  const { result } = renderHook(() => useAddTask(), {
+  const { result } = renderHook(() => useAddTask(addTaskArgs), {
     wrapper: createWrapper(),
   });
 
@@ -52,7 +54,7 @@ test('should set error if description is empty on handleSubmit', () => {
 });
 
 test('should clear input on successful task creation', async () => {
-  const { result } = renderHook(() => useAddTask(), {
+  const { result } = renderHook(() => useAddTask(addTaskArgs), {
     wrapper: createWrapper(),
   });
 

@@ -2,15 +2,18 @@ import { createBrowserRouter } from 'react-router-dom';
 import { ProtectedRoute } from './ProtectedRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { MainLayout } from '@/components/MainLayout';
+import { AuthProvider } from '@/features/auth/hooks/UserContext';
 
 export const createRouter = () => {
   return createBrowserRouter([
     {
       path: '/',
       element: (
-        <ProtectedRoute>
-          <MainLayout />
-        </ProtectedRoute>
+        <AuthProvider>
+          <ProtectedRoute>
+            <MainLayout />
+          </ProtectedRoute>
+        </AuthProvider>
       ),
       children: [
         {
@@ -26,9 +29,11 @@ export const createRouter = () => {
     },
     {
       element: (
-        <RestrictedRoute>
-          <MainLayout />
-        </RestrictedRoute>
+        <AuthProvider>
+          <RestrictedRoute>
+            <MainLayout />
+          </RestrictedRoute>
+        </AuthProvider>
       ),
       children: [
         {

@@ -1,16 +1,26 @@
 import { Link } from 'react-router-dom';
 import { Logout } from '@/features/auth/components/Logout';
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-} from './dropdown/Menu';
+import { Menu, MenuButton, MenuList, MenuItem } from './menu';
 import Bars from '@/assets/bars.svg?react';
-import { useUser } from '@/features/auth/hooks/useUser';
+import LogoutIcon from '@/assets/logout.svg?react';
+import SettingsIcon from '@/assets/settings.svg?react';
+import ProfileIcon from '@/assets/profile.svg?react';
+import { useUserContext } from '@/features/auth/hooks/UserContext';
+
+const menuItems = [
+  {
+    label: 'Profile',
+    icon: <ProfileIcon className="size-5" />,
+  },
+  {
+    label: 'Settings',
+    icon: <SettingsIcon className="size-5" />,
+  },
+];
 
 export const Header = () => {
-  const { user } = useUser();
+  const { user } = useUserContext();
+
   return (
     <header className="flex content-center justify-between">
       <h1 className="text-4xl font-extrabold">
@@ -27,12 +37,26 @@ export const Header = () => {
             >
               <Bars />
             </MenuButton>
+
             <MenuList>
+              {menuItems.map((item) => (
+                <MenuItem
+                  key={item.label}
+                  className="justify-start font-normal"
+                  variant="ghost"
+                  size="lg"
+                  icon={item.icon}
+                >
+                  {item.label}
+                </MenuItem>
+              ))}
               <Logout>
                 {({ handleLogout }) => (
                   <MenuItem
-                    className="w-full justify-start"
+                    className="justify-start font-normal"
                     variant="ghost"
+                    size="lg"
+                    icon={<LogoutIcon className="size-5" />}
                     onClick={handleLogout}
                   >
                     Logout

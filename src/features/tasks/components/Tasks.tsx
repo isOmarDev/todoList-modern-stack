@@ -9,6 +9,7 @@ import {
 } from '@/components/Tabs';
 import { TasksList } from './TasksList';
 import { useFetchTasks } from '../api/get-tasks';
+import { useUserContext } from '@/features/auth/hooks/UserContext';
 import {
   ALL_TASKS,
   ACTIVE_TASKS,
@@ -16,7 +17,9 @@ import {
 } from '../constants/tasksTypes';
 
 export const Tasks = () => {
-  const { isPending, data } = useFetchTasks();
+  const { user } = useUserContext();
+
+  const { isPending, data } = useFetchTasks({ userId: user?.id });
 
   const activeTasks = useMemo(
     () => data?.data.filter((task) => !task.isCompleted),
