@@ -3,6 +3,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import checker from 'vite-plugin-checker';
+import tailwindcss from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
 import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
@@ -14,6 +16,11 @@ export default defineConfig({
     checker({ typescript: true }),
     tsconfigPaths(),
   ],
+  css: {
+    postcss: {
+      plugins: [tailwindcss(), autoprefixer()],
+    },
+  },
   server: {
     port: 5000,
   },
